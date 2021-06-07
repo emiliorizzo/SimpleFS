@@ -1,5 +1,6 @@
 const utils = require('./lib/utils');
 const rskapi = utils.rskapi;
+const sjsonrpc = require('simplejsonrpc')
 
 const fs = require('fs');
 
@@ -15,7 +16,7 @@ const promisify = (inner) =>
 );
 
 const config = utils.loadConfiguration('./config.json');
-const client = rskapi.client(config.host);
+const client = rskapi.client(sjsonrpc.client(config.host));
 
 const from = process.argv[2];
 const to = process.argv[3];
